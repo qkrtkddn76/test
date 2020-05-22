@@ -23,31 +23,45 @@
 
     // // 카카오톡 링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
 
-    Kakao.Link.createTalkLinkButton({
-
-      container: '#kakao-link-btn',
-
-      label: '테스트 웹 개발',
-
-      image: {
-
-        src: 'http://dn.api1.kage.kakao.co.kr/14/dn/btqaWmFftyx/tBbQPH764Maw2R6IBhXd6K/o.jpg',
-
-        width: '300',
-
-        height: '200'
-
+    Kakao.Link.createDefaultButton({
+  container: '#CONTAINER_ID',
+  objectType: 'feed',
+  content: {
+    title: '디저트 사진',
+    description: '아메리카노, 빵, 케익',
+    imageUrl:
+      'http://mud-kage.kakao.co.kr/dn/NTmhS/btqfEUdFAUf/FjKzkZsnoeE4o19klTOVI1/openlink_640x640s.jpg',
+    link: {
+      mobileWebUrl: 'https://developers.kakao.com',
+      androidExecParams: 'test',
+    },
+  },
+  social: {
+    likeCount: 10,
+    commentCount: 20,
+    sharedCount: 30,
+  },
+  buttons: [
+    {
+      title: '웹으로 이동',
+      link: {
+        mobileWebUrl: 'https://developers.kakao.com',
       },
-
-      webButton: {
-
-        text: '테스트 링크 GoGo',
-
-        url: 'https://qkrtkddn76.github.io' // 앱 설정의 웹 플랫폼에 등록한 도메인의 URL이어야 합니다.
-
-       
-
-      }
+    },
+    {
+      title: '앱으로 이동',
+      link: {
+        mobileWebUrl: 'https://developers.kakao.com',
+      },
+    },
+  ],
+  success: function(response) {
+    console.log(response);
+  },
+  fail: function(error) {
+    console.log(error);
+  }
+});
 
       
 
