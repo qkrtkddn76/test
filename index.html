@@ -1,117 +1,47 @@
+<!DOCTYPE html>
+
 <html>
-
 <head>
-
-<meta charset="utf-8">
-
-<meta http-equiv="X-UA-Compatible" content="IE=ege"/>
-
-<meta nmae="viewport" content="user-scalable=no,inital-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,width=device-width">
-
-<title>:: Custom Login Demo - Kakao JavaScript SDK ::</title>
-
-<script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-
-<script type="text/javascript">
-
-    document.addEventListener("DOMContentLoaded", function() {
-
-
-
-        // @details 카카오톡 Developer API 사이트에서 발급받은 JavaScript Key
-
-        Kakao.init( "8f3db8b86920d1c2e993dfbc67bc8142" );
-
-
-
-        // @breif 카카오 로그인 버튼을 생성합니다.
-
-        Kakao.Auth.createLoginButton({
-
-              container : "#kakao-login-btn"
-
-            , success : function( authObj ) {
-
-
-
-                // console.log( authObj );
-
-
-
-                Kakao.API.request({
-
-                      url : "/v1/user/me"
-
-                    , success : function( res ) {
-
-
-
-                        // console.log( res );
-
-
-
-                        // @breif 아이디
-
-                        document.getElementById( "kakaoIdentity" ).innerHTML = res.id;
-
-
-
-                        // @breif 닉네임
-
-                        document.getElementById( "kakaoNickName" ).innerHTML = res.properties.nickname;
-
-
-
-                        // @breif 프로필 이미지
-
-                        document.getElementById( "kakaoProfileImg" ).src = res.properties.profile_image;
-
-
-
-                        // @breif 썸네일 이미지
-
-                        document.getElementById( "kakaoThumbnailImg" ).src = res.properties.thumbnail_image;
-
-
-
-                    }, fail : function( error ) {
-
-                        alert( JSON.stringify( error ) );
-
-                    }
-
-                });
-
-            }
-
-            , fail : function( error ) {
-
-                alert( JSON.stringify( error ));
-
-            }
-
-        });
-
-    });
-
-</script>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"/>
+<title>KakaoLink Demo(Web Button) - Kakao JavaScript SDK</title>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<style type='text/css'>
+  /* <![CDATA[ */
+    #file-input-wrapper {
+    	display : none ;
+    	margin-top : 50px ;
+    }
+  /* ]]> */
+</style>
 
 </head>
-
 <body>
-
-    <div>카카오 아이디 : <span id="kakaoIdentity"></span></div>
-
-    <div>닉네임 : <span id="kakaoNickName"></span></div>
-
-    <div>프로필 이미지 : <img id="kakaoProfileImg" src=""/></div>
-
-    <div>썸네일 이미지 : <img id="kakaoThumbnailImg" src=""/></div>
-
-    <br/>
-
-    <a id="kakao-login-btn"></a>
+<h3>카카오톡 앱이 설치되어 있는 모바일 기기라면 아래의 링크가 동작합니다.</h3>
+<a id="kakao-link-btn" href="javascript:;">
+<img src="http://dn.api1.kage.kakao.co.kr/14/dn/btqa9B90G1b/GESkkYjKCwJdYOkLvIBKZ0/o.jpg"/>
+</a>
+<script type='text/javascript'>
+  //<![CDATA[
+    // // 사용할 앱의 JavaScript 키를 설정해 주세요.
+    Kakao.init('8f3db8b86920d1c2e993dfbc67bc8142');
+    // // 카카오톡 링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
+    Kakao.Link.createTalkLinkButton({
+      container: '#kakao-link-btn',
+      label: '카카오링크 샘플에 오신 것을 환영합니다.',
+      image: {
+        src: 'http://dn.api1.kage.kakao.co.kr/14/dn/btqaWmFftyx/tBbQPH764Maw2R6IBhXd6K/o.jpg',
+        width: '300',
+        height: '200'
+      },
+      webButton: {
+        text: '카카오 디벨로퍼스',
+        url: 'https://dev.kakao.com/docs/js' // 앱 설정의 웹 플랫폼에 등록한 도메인의 URL이어야 합니다.
+      }
+    });
+  //]]>
+</script>
 
 </body>
-
-</html> 
+</html>
