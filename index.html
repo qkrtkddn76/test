@@ -2,39 +2,45 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>:: 카카오톡 공유하기 ::</title>
-<script type="text/JavaScript" src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
+<a href="javascript:;" id="kakao-link-btn">
+<img src="//developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png" width="10px" />
+</a>
+
 <script type="text/javascript">
-    function shareKakaotalk() {
-        Kakao.init("8f3db8b86920d1c2e993dfbc67bc8142");      // 사용할 앱의 JavaScript 키를 설정
-        Kakao.Link.sendDefault({
-              objectType:"location"
-            , address:"노스렌드"    // 공유할 위치의 주소
-            , addressTitle:"얼음왕관의 성채"   // 카카오톡 내의 지도 뷰에서 사용되는 타이틀
-            , content: {
-                  title:"WARCRAFT3 THE FROZEN THRONE"   // 콘텐츠의 타이틀
-                , description:"왕위를 계승하는 중입니다. 아버지"  // 콘텐츠 상세설명
-                , imageUrl:"arthas_menethil.jpg"    // 썸네일 이미지
-                , link: {
-                      mobileWebUrl:"http://magic.wickedmiso.com/"   // 모바일 카카오톡에서 사용하는 웹 링크 URL
-                    , webUrl:"http://magic.wickedmiso.com/" // PC버전 카카오톡에서 사용하는 웹 링크 URL
-                }
-            }
-            , social: {
-                  likeCount:0       // LIKE 개수
-                , commentCount:0    // 댓글 개수
-                , sharedCount:0     // 공유 회수
-            }
-            , buttons: [
-                {
-                      title:"버튼 제목" // 버튼 제목
-                    , link: {
-                          mobileWebUrl:"http://magic.wickedmiso.com/"   // 모바일 카카오톡에서 사용하는 웹 링크 URL
-                        , webUrl:"http://magic.wickedmiso.com/" // PC버전 카카오톡에서 사용하는 웹 링크 URL
-                    }
-                }
-            ]
-        });
-    }
+  //<![CDATA[
+    // // 사용할 앱의 JavaScript 키를 설정해 주세요.
+    Kakao.init('8f3db8b86920d1c2e993dfbc67bc8142');
+    // // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
+    Kakao.Link.createDefaultButton({
+      container: '#kakao-link-btn',
+      objectType: 'feed',
+      content: {
+        title: document.title,
+        description: '내용, 주로 해시태그',
+        imageUrl: document.images[0].src,
+        link: {
+          webUrl: document.location.href,
+          mobileWebUrl: document.location.href
+        }
+      },
+      social: {
+        likeCount: 286,
+        commentCount: 45,
+        sharedCount: 845
+      },
+      buttons: [
+        {
+          title: 'Open!',
+          link: {
+            mobileWebUrl: document.location.href,
+            webUrl: document.location.href
+          }
+        }  
+      ]
+    });
+  //]]>
 </script>
 </head>
 <body>
